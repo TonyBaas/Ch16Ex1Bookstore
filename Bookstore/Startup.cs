@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;    // add this
 using Bookstore.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Bookstore
 {
@@ -75,6 +76,7 @@ namespace Bookstore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
+            BookstoreContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }
